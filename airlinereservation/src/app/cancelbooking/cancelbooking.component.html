@@ -1,0 +1,69 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+   <div class="container-xxl" [ngStyle]="{'background' : 'url()'}" >
+      <div class="col-6 col-sm-3 mx-auto text-center">
+         <div class="header-title">
+           
+            <h2 class="wv-heading--subtitle">
+                Reconfirm for Booking Cancellation
+            </h2>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-4 mx-auto">
+            <div class="myform form ">
+               <form #book="ngForm" ngNativeValidate >
+                
+               
+                  <div class="form-group">
+                     <label for="bookId"></label>
+                     <input type="number" id="bookId"  title="Enter your FlightBooking Id"class="form-control" placeholder="BookId" name="bookId" pattern = "^[0-9]{4}$" [(ngModel)]="bookId" maxlength="4" required="bookId">
+                  </div>
+
+
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="name"  id="name" type="text"  pattern="\w+ \w+.*" title="Fill your first and last name" required>
+                 </div>
+
+
+                 <div class="form-group">
+                    <label for="emailId"></label>
+                    <input type="email" class="form-control" id="emailId" ngModel
+                    ng-required="emailId" #emailId="ngModel" required placeholder="Enter email" name="emailId" pattern="^\S*[@]\S*[.]\S*$" required="emailId"
+                    title="Enter your emailId">
+                    <div *ngIf="emailId.touched && !emailId.valid">
+                      <div *ngIf= "emailId.errors['required']">Email is mandatory</div>
+                      <div *ngIf= "emailId.errors['pattern']">Invalid Email Id</div> 
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mobileNo"></label>
+                    <input type="text"  id="mobileNo" 
+                    ngModel #mobileNo="ngModel" title="Enter your Mobile No" required placeholder="Enter mobile " class="form-control" id="mobileNo" ngModel required name="mobileNo"  pattern="^[0-9]{10}$" minlength="10"
+                    autocomplete="off" maxlength="10" pattern="\d{10}">
+                    <div *ngIf="mobileNo.touched && !mobileNo.valid">
+                      <div *ngIf= "mobileNo.errors['required']">Mobile is mandatory</div>
+                      <div *ngIf= "mobileNo.errors['pattern']">No alfabates are allowed</div>
+                      <div *ngIf= "mobileNo.errors['minlength']">can not be less than 10 digits</div> 
+                    </div>
+                  </div>  
+                  <div class="text-center ">
+                     <button type="submit" (click)="cancelbookTicket()" class=" btn btn-danger send-button tx-tfm" 
+                     >Cancel Booking</button>
+                     <br/>
+                     <br/>
+                     <p>{{message}}</p>
+                  </div>
+                  
+                  
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>

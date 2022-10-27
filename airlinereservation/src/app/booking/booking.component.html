@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Book Ticket</h2>
+  <form  #book="ngForm" (ngSubmit)="bookTicket()" ngNativeValidate>
+
+    <div class="form-group">
+      <label for="emailId">Email Id*:</label>
+      <input type="email" class="form-control" id="emailId" ng-required="emailId" ngModel #emailId="ngModel" required placeholder="Enter email" name="emailId" [(ngModel)]="formData.emailId" pattern="^\S*[@]\S*[.]\S*$" required="emailId" 
+                   ng-model="model"
+                   ng-required="emailId">
+      <div *ngIf="emailId.touched && !emailId.valid">
+        <div *ngIf= "emailId.errors['required']">Email is mandatory</div>
+        <div *ngIf= "emailId.errors['pattern']">Invalid Email Id</div> 
+      </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="mobileNo">Mobile No*:</label>
+        <input type="text" class="form-control" id="mobileNo" ngModel #mobileNo="ngModel" required placeholder="Enter mobile " name="mobileNo" [(ngModel)]="formData.mobileNo" pattern="^[0-9]{10}$" minlength="10"
+         autocomplete="off" maxlength="10" pattern="\d{10}" title=" Put 10 digits only" required>
+        <div *ngIf="mobileNo.touched && !mobileNo.valid">
+          <div *ngIf= "mobileNo.errors['required']">Mobile is mandatory</div>
+          <div *ngIf= "mobileNo.errors['pattern']">No alfabates are allowed</div>
+          <div *ngIf= "mobileNo.errors['minlength']">can not be less than 10 digits</div> 
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" class="form-control" id="date" ngModel #date="ngModel" required placeholder="Enter date" name="date" [(ngModel)]="formData.date">  
+      </div>
+
+
+      <div class="form-group">
+        <label for="noOfPerson">No Of Person:</label>
+        <input type="text" pattern="^[0-9]" class="form-control" id="noOfPerson" ngModel #noOfPerson="ngModel" required placeholder="Enter No Of Person" name="noOfPerson" 
+         autocomplete="off" maxlength="1" title="Book max 5 seat only" required [(ngModel)]="formData.noOfPerson">
+        <div *ngIf="noOfPerson.touched && !noOfPerson.valid">
+          <div *ngIf= "mobileNo.errors['required']">No of Person is mandatory & you book only 9 seats</div>
+          <div *ngIf= "noOfPerson.errors['pattern']">You can book only 9 seat</div> 
+        </div>
+      </div> 
+
+    
+    <button type="submit" class="btn btn-success">Book&ProcessToPayment</button>
+  </form>
+</div>
+
+</body>
+</html>
